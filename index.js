@@ -23,7 +23,7 @@ app.post("/addSchool", async (req, res) => {
 
   try {
     await db.execute(
-      "INSERT INTO schools (name, address, latitude, longitude) VALUES (?, ?, ?, ?)",
+      "INSERT INTO schoolsData (name, address, latitude, longitude) VALUES (?, ?, ?, ?)",
       [name, address, latitude, longitude]
     );
 
@@ -57,7 +57,7 @@ app.get("/listSchools", async (req, res) => {
   }
 
   try {
-    const [schools] = await db.execute("SELECT * FROM schools");
+    const [schools] = await db.execute("SELECT * FROM schoolsData");
 
     const schoolsWithDistance = schools.map((school) => {
       const distance = calculateDistance(
